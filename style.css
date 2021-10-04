@@ -7,20 +7,39 @@ section {
     display       : flex;
     flex-direction: column;
     align-items   : center;
+    margin: 5px 0;
 }
 
 img {
-    height       : 200px;
-    width        : 200px;
+    height       : 150px;
+    width        : 150px;
     border-radius: 70%;
 }
 
+h1{
+    margin: 5px 0;
+}
 
 h2 {
-    margin-bottom: 5px;
+    margin: 5px 0;
 }
 
 .container {
     text-align    : center;
     flex-direction: column;
 }
+
+.centered {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.centered div {
+    margin-left: 10px;
+}
+
+.button {
+    margin: 20px;
+}
+
