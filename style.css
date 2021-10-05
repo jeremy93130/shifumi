@@ -1,13 +1,18 @@
+@import url('https://fonts.googleapis.com/css2?family=Crimson+Text&family=Italianno&display=swap');
+
+
 body {
     background-color: black;
     color           : white;
+    font-family     : 'Crimson Text', Serif;
+    font-size       : 17px;
 }
 
 section {
     display       : flex;
     flex-direction: column;
     align-items   : center;
-    margin: 5px 0;
+    margin        : 5px 0;
 }
 
 img {
@@ -16,8 +21,9 @@ img {
     border-radius: 70%;
 }
 
-h1{
-    margin: 5px 0;
+h1 {
+    margin: 10px 0;
+    color : red;
 }
 
 h2 {
@@ -30,9 +36,9 @@ h2 {
 }
 
 .centered {
-    display: flex;
+    display       : flex;
     flex-direction: column;
-    align-items: center;
+    align-items   : center;
 }
 
 .centered div {
@@ -41,5 +47,5 @@ h2 {
 
 .button {
     margin: 20px;
-}
 
+}
