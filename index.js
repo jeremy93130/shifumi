@@ -10,7 +10,7 @@ var stop = document.getElementsByClassName("button")
 var image = document.getElementById("rps")
 var scoreMe = 0
 var scoreMiss = 0
-var stopGame = 0
+var end = 0
 
 function reInit() {
     document.getElementById("ok").style.display = "none"
@@ -25,6 +25,19 @@ function reInit() {
 function gameOver() {
     document.getElementById("ok").style.display = "block"
     document.getElementById("play").style.display = "none"
+}
+
+function historic(num) {
+    var you = {
+        name = "you",
+        score = scoreMe
+    }
+    for (var i = 0; i = score ; i++){
+        switch (num) {
+            case scoreMe = 3 :
+                
+        }
+    }
 }
 
 
