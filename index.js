@@ -1,13 +1,38 @@
+const PIERRE = 1;
+const PAPIER = 2;
+const CISEAUX = 3;
+
+
 var result = document.getElementById("h1")
-var scored = document.getElementById("miss")
-var results = document.getElementById("you")
+var showScoreMiss = document.getElementById("miss")
+var showScoreMe = document.getElementById("you")
 var stop = document.getElementsByClassName("button")
+var image = document.getElementById("rps")
 var scoreMe = 0
 var scoreMiss = 0
 var stopGame = 0
-function show() {
-    var image = document.getElementById("rps")
-    image.setAttribute("src", "https://www.jerome-reaux-creations.fr/DVP/codepen/shifumi/1-pierre.jpg")
+
+function reInit() {
+    document.getElementById("ok").style.display = "none"
+    document.getElementById("play").style.display = "block"
+    scoreMe = 0
+    scoreMiss = 0
+    showScoreMe.innerHTML = "Vous"
+    showScoreMiss.innerHTML = "Madame Zouzou"
+    result.innerHTML = "Début du jeu"
+}
+
+function gameOver() {
+    document.getElementById("ok").style.display = "block"
+    document.getElementById("play").style.display = "none"
+}
+
+
+/**
+ * on joue PIERRE
+ */
+function playRoc() {
+    setImage(PIERRE,image)
 
     console.log("Pierre !")
 
@@ -16,31 +41,26 @@ function show() {
     setImage(random)
 
 
-    if (random == 1) {
+    if (random == PIERRE) {
         result.innerHTML = "Égalité"
-        stopGame += 1
 
 
-    } else if (random == 2) {
+    } else if (random == PAPIER) {
         result.innerHTML = "Madame Zouzou a gagné des provisions de bierre !"
         scoreMiss += 1
-        stopGame += 1
-        scored.innerHTML = `+ ${scoreMiss} pour Madame Zouzou`
-    } else {
+        showScoreMiss.innerHTML = `+ ${scoreMiss} pour Madame Zouzou`
+    } else { // (random == CISEAUX)
         scoreMe += 1
-        stopGame += 1
-        results.innerHTML = `+ ${scoreMe} pour vous !`
+        showScoreMe.innerHTML = `+ ${scoreMe} pour vous !`
     }
 
 
-    if (scoreMiss == 3 || (scoreMe < scoreMiss && stopGame === 5)) {
+    if (scoreMiss == 3) {
         result.innerHTML = `Madame Zouzou a gagné avec un score de ${scoreMiss}`
-        scoreMiss = 0
-        scoreMe = 0
-    } else if (scoreMe == 3 || (scoreMiss < scoreMe && stopGame === 5)) {
+        gameOver()
+    } else if (scoreMe == 3) {
         result.innerHTML = `Vous avez gagné avec un score de ${scoreMe}`
-        scoreMe = 0
-        scoreMiss = 0
+        gameOver()
     }
 }
 
@@ -48,69 +68,55 @@ function show() {
 
 
 
-function showing() {
-    var image = document.getElementById("rps")
-    image.setAttribute("src", "https://www.jerome-reaux-creations.fr/DVP/codepen/shifumi/2-feuille.jpg")
-    console.log("Papier !")
+function playPaper() {
+    setImage(PAPIER,image)
     var random = generatedRandom()
     setImage(random)
 
     if (random == 1) {
         result.innerHTML = "Vous avez gagné !"
         scoreMe += 1
-        stopGame += 1
-        results.innerHTML = `+ ${scoreMe} pour vous !`
+        showScoreMe.innerHTML = `+ ${scoreMe} pour vous !`
     } else if (random == 2) {
         result.innerHTML = "Égalité"
-        stopGame += 1
     } else {
         result.innerHTML = "Madame Zouzou a gagné des provisions de bierre ! "
         scoreMiss += 1
-        stopGame += 1
-        scored.innerHTML = `+ ${scoreMiss} pour Madame Zouzou`
+        showScoreMiss.innerHTML = `+ ${scoreMiss} pour Madame Zouzou`
     }
 
-    if (scoreMiss == 3 || (scoreMe < scoreMiss && stopGame === 5)) {
+    if (scoreMiss == 3) {
         result.innerHTML = `Madame Zouzou a gagné avec un score de ${scoreMiss}`
-        scoreMiss = 0
-        scoreMe = 0
-    } else if (scoreMe == 3(scoreMiss < scoreMe && stopGame === 5)) {
+        gameOver()
+    } else if (scoreMe == 3) {
         result.innerHTML = `Vous avez gagné avec un score de ${scoreMe}`
-        scoreMiss = 0
-        scoreMe = 0
+        gameOver()
     }
 }
 
-function showed() {
-    var image = document.getElementById("rps")
-    image.setAttribute("src", "https://jerome-reaux-creations.fr/DVP/codepen/shifumi/3-ciseaux.jpg")
-    console.log("Ciseaux !")
+function playSissors() {
+    setImage(CISEAUX,image)
     var random = generatedRandom()
     setImage(random)
 
     if (random == 1) {
         result.innerHTML = "Madame Zouzou a gagné des provisions de bierre ! "
         scoreMiss += 1
-        stopGame += 1
-        scored.innerHTML = `+ ${scoreMiss} pour Madame Zouzou`
+        showScoreMiss.innerHTML = `+ ${scoreMiss} pour Madame Zouzou`
     } else if (random == 2) {
         result.innerHTML = "Vous avez gagné !"
         scoreMe += 1
-        stopGame += 1
-        results.innerHTML = `+ ${scoreMe} pour vous !`
+        showScoreMe.innerHTML = `+ ${scoreMe} pour vous !`
     } else {
         result.innerHTML = "Égalité"
-        stopGame += 1
     }
 
-    if (scoreMiss == 3 || (scoreMe < scoreMiss && stopGame === 5)) {
+    if (scoreMiss == 3) {
         result.innerHTML = `Madame Zouzou a gagné avec un score de ${scoreMiss}`
-        scoreMiss = 0
-        scoreMe = 0
-    } else if (scoreMe == 3(scoreMiss < scoreMe && stopGame === 5)) {
+        gameOver()
+    } else if (scoreMe == 3) {
         result.innerHTML = `Vous avez gagné avec un score de ${scoreMe}`
-        scoreMiss = 0
-        scoreMe = 0
+        gameOver()
     }
 }
 
@@ -121,13 +127,17 @@ function generatedRandom() {
     return Math.floor(Math.random() * (max - min + 1) + min)
 }
 
-function setImage(num) {
-    var random = document.getElementById("zouzou")
-    if (num == 1) {
-        random.setAttribute("src", "https://www.jerome-reaux-creations.fr/DVP/codepen/shifumi/1-pierre.jpg")
-    } else if (num == 2) {
-        random.setAttribute("src", "https://www.jerome-reaux-creations.fr/DVP/codepen/shifumi/2-feuille.jpg")
-    } else {
-        random.setAttribute("src", "https://jerome-reaux-creations.fr/DVP/codepen/shifumi/3-ciseaux.jpg")
+function setImage(num, img = document.getElementById("zouzou")) {
+    switch (num) {
+        case PIERRE:
+            img.setAttribute("src", "https://www.jerome-reaux-creations.fr/DVP/codepen/shifumi/1-pierre.jpg");
+            break
+        case PAPIER:
+            img.setAttribute("src", "https://www.jerome-reaux-creations.fr/DVP/codepen/shifumi/2-feuille.jpg");
+            break
+        case CISEAUX:
+            img.setAttribute("src", "https://jerome-reaux-creations.fr/DVP/codepen/shifumi/3-ciseaux.jpg");
     }
 }
+
+

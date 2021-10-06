@@ -34,9 +34,15 @@
                 <img id="rps" />
                 <div>
                     <h2 id="you">Vous</h2>
-                    <button id="rock" class="button" onclick="show()"> Pierre </button>
-                    <button id="paper" class="button" onclick="showing()"> Papier </button>
-                    <button id="scissors" class="button" onclick="showed()"> Ciseaux </button>
+                    <div id="play">
+                        <button id="rock" class="button" onclick="playRoc()"> Pierre </button>
+                        <button id="paper" class="button" onclick="playPaper()"> Papier </button>
+                        <button id="scissors" class="button" onclick="playSissors()"> Ciseaux </button>
+
+                    </div>
+                    <div id="ok">
+                        <button onclick="reInit()">Rejouer</button>
+                    </div>
                 </div>
                 <img src="img/robert.jpg" />
 
